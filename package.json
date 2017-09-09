@@ -1,5 +1,5 @@
 {
-  "name": "reserva-de-salas-frontend",
+  "name": "reserva-de-salas",
   "version": "0.0.1",
   "description": "",
   "main": "app.js",
@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lucasvt/reserva-de-salas-frontend.git"
+    "url": "git+https://github.com/lucasvt/reserva-de-salas.git"
   },
   "author": "Lucas Vaz Tassoni",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lucasvt/reserva-de-salas-frontend/issues"
+    "url": "https://github.com/lucasvt/reserva-de-salas/issues"
   },
-  "homepage": "https://github.com/lucasvt/reserva-de-salas-frontend#readme"
+  "homepage": "https://github.com/lucasvt/reserva-de-salas#readme"
 }

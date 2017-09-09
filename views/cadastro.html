@@ -5,7 +5,7 @@
                 <form name="reservaForm">
                     <div class="form-group">
                         <label>Local/Filiais:</label>
-                        <select class="form-control" name="local" ng-model="reserva.local"  ng-options="local for local in locais" required>
+                        <select class="form-control" name="local" ng-model="reserva.local"  ng-options="local.local + ' / ' + local.filial for local in locais" required>
                             <option value="" selected="selected">Selecione um Local/Filiais</option>
 
                         </select>

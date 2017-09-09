@@ -1,40 +1,18 @@
 var app = angular.module('app');
 
 
-app.controller('ListaController', function($scope, $location)
+app.controller('ListaController', function($scope, $location, $http)
 {
     var modalExcluir = $('#confirmaExclusao');
     
-    $scope.lista = [
-        {
-            local : 'Centro',
-            sala : 'Sala 1',
-            dataInicio : '2017/08/10 12:50:35',
-            dataFim : '2017/08/10 12:50:35',
-            responsavel : 'Lucas',
-            cafe : 'sim',
-            descricao : 'Alugado para Reunião'
-        },
-        {
-            local : 'Centro 2',
-            sala : 'Sala 2',
-            dataInicio : '2017/08/10 12:50:35',
-            dataFim : '2017/08/10 12:50:35',
-            responsavel : 'Lucas',
-            cafe : 'não',
-            descricao : 'Alugado para Reunião 2'
-        },
-        {
-            local : 'Centro 3',
-            sala : 'Sala  3',
-            dataInicio : '2017/08/10 12:50:35',
-            dataFim : '2017/08/10 12:50:35',
-            responsavel : 'Lucas',
-            cafe : 'sim',
-            descricao : 'Alugado para Reunião 3'
-        }
-    ];
-    
+    $scope.lista = [];
+
+    // Requisição AJAX para obter a lista de reservas do backend
+    $http.get('http://localhost:5000/reservas')
+        .then(function(response) {
+            $scope.lista = response.data;
+        });
+
     $scope.cadastrar = function cadastrar() {
         $location.path("/cadastro");
     };

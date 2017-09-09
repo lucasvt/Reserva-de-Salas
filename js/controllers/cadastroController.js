@@ -1,7 +1,7 @@
 var app = angular.module('app');
 
 
-app.controller('CadastroController', function($scope, $location, $routeParams)
+app.controller('CadastroController', function($scope, $location, $routeParams, $http)
 {
     if($routeParams.id){
         console.log('editar contato');
@@ -10,22 +10,28 @@ app.controller('CadastroController', function($scope, $location, $routeParams)
     }
 
     $scope.reserva = {};
-    $scope.locais = [
-        'Florianopolis/Capoeiras',
-        'Londrina/Centro',
-        'São José/Kobrasol'
-    ];
-    console.log($routeParams.id);
+    $scope.locais = [];
+    $scope.salas = [];
 
-    $scope.salas = [
-        'Joaquina',
-        'Ingleses',
-        'Jurerê'
-    ];
-    
+    // Requisição AJAX para obter a lista de reservas do backend
+    $http.get('http://localhost:5000/locais')
+        .then(function(response) {
+            $scope.locais = response.data;
+        });
+
+    // Requisição AJAX para obter a lista de reservas do backend
+    $http.get('http://localhost:5000/salas')
+        .then(function(response) {
+            $scope.salas = response.data;
+        });
+
+
+
     $scope.adicionarReserva = function adicionarReserva() {
-        $scope.lista.push(angular.copy(reserva));
-        delete  $scope.reserva;
+        $http.post('http://localhost:5000/reservas', $scope.reserva)
+            .then(function(response) {
+                console.log(response);
+        });
     };
 
     $scope.abreModalEditar = function abreModalEditar(reserva, indice) {
