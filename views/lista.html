@@ -34,8 +34,8 @@
             </td>
             <td>{{reserva.local}}</td>
             <td>{{reserva.sala}}</td>
-            <td>{{reserva.dataInicio | date:"dd/MM/yyyy 'às' hh:mma"}}</td>
-            <td>{{reserva.dataFim | date:"dd/MM/yyyy 'às' hh:mma"}}</td>
+            <td>{{reserva.dataInicio | date:"dd/MM/yyyy 'às' hh:mma 'hs'"}}</td>
+            <td>{{reserva.dataFim | date:"dd/MM/yyyy 'às' hh:mma 'hs'"}}</td>
             <td>{{reserva.responsavel}}</td>
             <td>{{reserva.descricao}}</td>
             <td>
@@ -82,7 +82,7 @@
                     Início
                 </div>
                 <div class="col-xs-6">
-                    {{reserva.dataInicio | date:"dd/MM/yyyy 'às' hh:mma"}}
+                    {{reserva.dataInicio | date:"dd/MM/yyyy 'às' hh:mma 'hs'"}}
                 </div>
             </div>
             <div class="row">
@@ -90,7 +90,7 @@
                     Fim
                 </div>
                 <div class="col-xs-6">
-                    {{reserva.dataFim | date:"dd/MM/yyyy 'às' hh:mma"}}
+                    {{reserva.dataFim | date:"dd/MM/yyyy 'às' hh:mma 'hs'"}}
                 </div>
             </div>
             <div class="row">
