@@ -6,32 +6,38 @@ app.controller('ListaController', function($scope, $location, $http)
     var modalExcluir = $('#confirmaExclusao');
     
     $scope.lista = [];
+    $scope.reserva = {};
 
     // Requisição AJAX para obter a lista de reservas do backend
     $http.get('http://localhost:5000/reservas')
         .then(function(response) {
             $scope.lista = response.data;
         });
-
+    // Leva a tela de cadastro
     $scope.cadastrar = function cadastrar() {
         $location.path("/cadastro");
     };
-
+    // Edita um cadastro passando seu ID por parâmetro
     $scope.editar = function editar(id) {
         
         $location.path("/cadastro/" + id);
     };
-
+    // Leva ao modal de exclusao
     $scope.abreModalExclusao = function abreModalExclusao(reserva, indice) {
         $scope.reserva = reserva;
-        $scope.indice = indice;
+        $scope.reserva.indice = indice;
         modalExcluir.modal('show');
     };
 
-    $scope.excluir = function excluir(indice) {
-        $scope.lista.splice(indice, 1);
+    $scope.excluir = function excluir() {
+        $http.delete('http://localhost:5000/reservas/' + $scope.reserva._id)
+            .then(function(response) {
+                // Deleta o objeto reserva da lista
+                $scope.lista.splice($scope.reserva.indice, 1);
+                $scope.reserva = {};
+            });
         modalExcluir.modal('hide');
-    };
+    }
 
     $scope.apagarVariasReserva = function apagarVariasReserva(lista) {
         $scope.lista = lista.filter(function (reserva) {

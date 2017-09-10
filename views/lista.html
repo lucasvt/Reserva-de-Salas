@@ -34,13 +34,13 @@
             </td>
             <td>{{reserva.local}}</td>
             <td>{{reserva.sala}}</td>
-            <td>{{reserva.dataInicio}}</td>
-            <td>{{reserva.dataFim}}</td>
+            <td>{{reserva.dataInicio | date:"dd/MM/yyyy 'às' hh:mma"}}</td>
+            <td>{{reserva.dataFim | date:"dd/MM/yyyy 'às' hh:mma"}}</td>
             <td>{{reserva.responsavel}}</td>
             <td>{{reserva.descricao}}</td>
             <td>
                 <div class="col-xs-6">
-                    <button class="btn btn-warning btn-block" ng-click="editar($index)">Editar</button>
+                    <button class="btn btn-warning btn-block" ng-click="editar(reserva._id)">Editar</button>
                 </div>
                 <div class="col-xs-6">
                     <button class="btn btn-danger btn-block" ng-click="abreModalExclusao(reserva, $index)">Excluir</button>
@@ -120,7 +120,7 @@
             <div class="row">
                 <div class="col-xs-6">
                     <button class="btn btn-warning btn-block"  data-toggle="modal"
-                            data-target="#editar" ng-click="editar($index)">Editar</button>
+                            data-target="#editar" ng-click="editar(reserva._id)">Editar</button>
                 </div>
                 <div class="col-xs-6">
                     <button class="btn btn-danger btn-block" ng-click="abreModalExclusao(reserva, $index)">Excluir</button>

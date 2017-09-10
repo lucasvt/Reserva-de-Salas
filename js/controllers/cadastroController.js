@@ -3,13 +3,17 @@ var app = angular.module('app');
 
 app.controller('CadastroController', function($scope, $location, $routeParams, $http)
 {
-    if($routeParams.id){
-        console.log('editar contato');
-    }else {
-        console.log('cadastrar contato');
+    var idReserva = $routeParams.id;// ID enviado por quem requisitou a rota
+    if(idReserva){
+        // Requisição AJAX para obter a reserva ou criar uma nova
+        $http.get('http://localhost:5000/reservas/' + idReserva)
+            .then(function(response) {
+                $scope.reserva = response.data;
+            });
+    } else {
+        $scope.reserva = {};
     }
 
-    $scope.reserva = {};
     $scope.locais = [];
     $scope.salas = [];
 
@@ -27,12 +31,20 @@ app.controller('CadastroController', function($scope, $location, $routeParams, $
 
 
 
-    $scope.adicionarReserva = function adicionarReserva() {
-        $http.post('http://localhost:5000/reservas', $scope.reserva)
-            .then(function(response) {
-                console.log(response);
-        });
-    };
+    $scope.salva = function salva(formularioEhValido) {
+        if(!formularioEhValido) return;
+        if($scope.reserva._id){
+            $http.put('http://localhost:5000/reservas', $scope.reserva)
+                .then(function(response) {
+                    $location.path('/');
+                });
+        } else {
+            $http.post('http://localhost:5000/reservas', $scope.reserva)
+                .then(function(response) {
+                    $location.path('/');
+                });
+        }
+    }
 
     $scope.abreModalEditar = function abreModalEditar(reserva, indice) {
         $scope.reserva = reserva;
@@ -44,4 +56,4 @@ app.controller('CadastroController', function($scope, $location, $routeParams, $
         $location.path("/");
 
     };
-});
+})
