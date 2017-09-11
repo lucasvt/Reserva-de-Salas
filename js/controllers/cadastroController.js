@@ -1,6 +1,5 @@
 var app = angular.module('app');
 
-
 app.controller('CadastroController', function($scope, $location, $routeParams, $http)
 {
     var idReserva = $routeParams.id;// ID enviado por quem requisitou a rota
@@ -17,21 +16,12 @@ app.controller('CadastroController', function($scope, $location, $routeParams, $
     }
 
     $scope.locais = [];
-    $scope.salas = [];
 
-    // Requisição AJAX para obter a lista de reservas do backend
+    // Requisição AJAX para obter a lista de locais do backend
     $http.get('http://localhost:5000/locais')
         .then(function(response) {
             $scope.locais = response.data;
         });
-
-    // Requisição AJAX para obter a lista de reservas do backend
-    $http.get('http://localhost:5000/salas')
-        .then(function(response) {
-            $scope.salas = response.data;
-        });
-
-
 
     $scope.salva = function salva(formularioEhValido) {
         if(!formularioEhValido) return;

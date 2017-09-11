@@ -33,7 +33,7 @@
                 </div>
             </td>
             <td>{{reserva.local}}</td>
-            <td>{{reserva.sala}}</td>
+            <td>{{reserva.sala.nome}}</td>
             <td>{{reserva.dataInicio | date:"dd/MM/yyyy 'às' hh:mma 'hs'"}}</td>
             <td>{{reserva.dataFim | date:"dd/MM/yyyy 'às' hh:mma 'hs'"}}</td>
             <td>{{reserva.responsavel}}</td>
@@ -66,7 +66,7 @@
                     Local/Filiais
                 </div>
                 <div class="col-xs-6">
-                    {{reserva.local}}
+                    {{reserva.local.nome}}
                 </div>
             </div>
             <div class="row">
@@ -74,7 +74,7 @@
                     Sala
                 </div>
                 <div class="col-xs-6">
-                    {{reserva.sala}}
+                    {{reserva.sala.nome}}
                 </div>
             </div>
             <div class="row">
@@ -138,7 +138,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">confirma Exclusão</span></button>
             </div>
             <div class="modal-body">
-                <p>Deseja realmente excluir a reserva {{ reserva.local }} - {{ reserva.sala }} - {{ reserva.dataInicio }}</p>
+                <p>Deseja realmente excluir a reserva: {{ reserva.local.nome }} - {{ reserva.carro.nome }} - {{ reserva.dataInicio | date: "dd/MM/yyyy 'às' hh:mm 'hs'"}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -156,7 +156,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Confirmar a Exclusão dos Selecionados</span></button>
             </div>
             <div class="modal-body">
-                <p>Deseja realmente excluir a reserva {{ local }} - {{ sala }} - {{ data_de_inicio }}</p>
+                <p>Deseja realmente excluir a reserva: {{ reserva.local.nome }} - {{ reserva.carro.nome }} - {{ reserva.dataInicio | date: "dd/MM/yyyy 'às' hh:mm 'hs'"}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
