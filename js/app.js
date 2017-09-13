@@ -1,5 +1,7 @@
+// Criando um módulo com AngularJS
 var app = angular.module('app', ['ngRoute']);
 
+// Configurando o arquivo de rotas
 app.config(function ($routeProvider, $locationProvider) {
     
     $routeProvider
@@ -17,6 +19,8 @@ app.config(function ($routeProvider, $locationProvider) {
             controller: 'CadastroController'
         })
         
-        .otherwise({redirectTo: '/'});
+        .otherwise({
+         redirectTo: '/'
+    });
 });
 

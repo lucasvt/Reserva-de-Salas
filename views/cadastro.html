@@ -5,7 +5,7 @@
                 <form name="reservaForm">
                     <div class="form-group">
                         <label>Local/Filiais:</label>
-                        <select class="form-control" name="local" ng-model="reserva.local"  ng-options="local.nome for local in locais track by local._id" required>
+                        <select class="form-control" name="local.nome" ng-model="reserva.local"  ng-options="local.nome for local in locais track by local._id" required>
                             <option value="" selected="selected">Selecione um Local/Filiais</option>
 
                         </select>
@@ -50,5 +50,5 @@
 
 
                 <button type="button" class="btn btn-default" ng-click="cancelar()">Cancelar</button>
-                <button class="btn btn-default" ng-click="salva(reservaForm.$valid)">Adicionar Reserva</button>
+                <button class="btn btn-default" ng-click="salvar(reservaForm.$valid)">Adicionar Reserva</button>
 

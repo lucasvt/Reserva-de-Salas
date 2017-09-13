@@ -1,6 +1,5 @@
 var app = angular.module('app');
 
-
 app.controller('ListaController', function($scope, $location, $http)
 {
     var modalExcluir = $('#confirmaExclusao');
@@ -11,7 +10,7 @@ app.controller('ListaController', function($scope, $location, $http)
     // Requisição AJAX para obter a lista de reservas do backend
     $http.get('http://localhost:5000/reservas')
         .then(function(response) {
-            $scope.lista = response.data;
+            $scope.reservas = response.data;
         });
     // Leva a tela de cadastro
     $scope.cadastrar = function cadastrar() {
@@ -19,7 +18,6 @@ app.controller('ListaController', function($scope, $location, $http)
     };
     // Edita um cadastro passando seu ID por parâmetro
     $scope.editar = function editar(id) {
-        
         $location.path("/cadastro/" + id);
     };
     // Leva ao modal de exclusao
@@ -33,22 +31,12 @@ app.controller('ListaController', function($scope, $location, $http)
         $http.delete('http://localhost:5000/reservas/' + $scope.reserva._id)
             .then(function(response) {
                 // Deleta o objeto reserva da lista
-                $scope.lista.splice($scope.reserva.indice, 1);
+                $scope.reservas.splice($scope.reserva.indice, 1);
                 $scope.reserva = {};
             });
         modalExcluir.modal('hide');
     }
 
-    $scope.apagarVariasReserva = function apagarVariasReserva(lista) {
-        $scope.lista = lista.filter(function (reserva) {
-            if(!reserva.selecionado) return reserva;
-        });
-    };
-
-    $scope.isReservaSelecionada = function isReservaSelecionada(lista) {
-        return lista.some(function (reserva) {
-            return reserva.selecionado;
-        });
-    };
+   
 
 });
